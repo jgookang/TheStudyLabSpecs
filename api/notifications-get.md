@@ -1,29 +1,29 @@
-## Spec: notifications-get
+﻿## Spec: GET /api/v1/dashboard/notifications
 
-**유형**: `API Endpoint`  
-**위치**: `docs/specs/api/notifications-get.md`  
-**작성일**: 2026-03-28  
-**상태**: `Draft`
-
----
-
-### 목적
-
-> 대시보드 알림 섹션과 상단 알림 버튼에 필요한 최신 알림 목록을 조회한다.  
-> 시험 일정, 목표 달성, 추천 업데이트 같은 요약 알림을 최신순으로 제공한다.
+**?좏삎**: `API Endpoint`  
+**?꾩튂**: `docs/specs/api/notifications-get.md`  
+**?묒꽦??*: 2026-03-28  
+**?곹깭**: `Ready`
 
 ---
 
-### 요구사항
+### 紐⑹쟻
 
-- [x] 최신 알림 목록을 반환한다.
-- [x] 각 알림은 제목, 설명, 시간 라벨, tone 정보를 가진다.
-- [x] 대시보드에서는 최근 3개 기준으로 우선 사용한다.
-- [x] 인증이 필요하다.
+> ??쒕낫???뚮┝ ?뱀뀡怨??곷떒 ?뚮┝ 踰꾪듉???꾩슂??理쒖떊 ?뚮┝ 紐⑸줉??議고쉶?쒕떎.  
+> ?쒗뿕 ?쇱젙, 紐⑺몴 ?ъ꽦, 異붿쿇 ?낅뜲?댄듃 媛숈? ?붿빟 ?뚮┝??理쒖떊?쒖쑝濡??쒓났?쒕떎.
 
 ---
 
-### 인터페이스 정의
+### ?붽뎄?ы빆
+
+- [x] 理쒖떊 ?뚮┝ 紐⑸줉??諛섑솚?쒕떎.
+- [x] 媛??뚮┝? ?쒕ぉ, ?ㅻ챸, ?앹꽦 ?쒓컖, tone ?뺣낫瑜?媛吏꾨떎.
+- [x] ??쒕낫?쒖뿉?쒕뒗 理쒓렐 3媛?湲곗??쇰줈 ?곗꽑 ?ъ슜?쒕떎.
+- [x] ?몄쬆???꾩슂?섎떎.
+
+---
+
+### ?명꽣?섏씠???뺤쓽
 
 ```typescript
 type NotificationTone = 'default' | 'success' | 'info' | 'warning'
@@ -32,7 +32,8 @@ interface NotificationItem {
   id: string
   title: string
   description: string
-  timeLabel: string
+  createdAt: string
+  timeLabel?: string
   tone: NotificationTone
 }
 
@@ -49,55 +50,47 @@ interface ApiErrorResponse {
 
 ---
 
-### 서버 검증 규칙
+### ?쒕쾭 寃利?洹쒖튃
 
-| 필드 | 규칙 |
+| ?꾨뱶 | 洹쒖튃 |
 |------|------|
-| Authorization | 필수. 유효한 access token 또는 서버 인증 컨텍스트가 있어야 한다. |
+| Authorization | ?꾩닔. ?좏슚??access token ?먮뒗 ?쒕쾭 ?몄쬆 而⑦뀓?ㅽ듃媛 ?덉뼱???쒕떎. |
+| `createdAt` | ISO 8601 timestamp ?댁뼱???쒕떎. |
 
-검증 실패 시 권장 에러:
-- 인증 없음: `401 AUTH_REQUIRED`
+寃利??ㅽ뙣 ??沅뚯옣 ?먮윭:
+- ?몄쬆 ?놁쓬: `401 AUTH_REQUIRED`
 
 ---
 
-### 동작 정의
+### ?숈옉 ?뺤쓽
 
-| 조건 | 동작 |
+| 議곌굔 | ?숈옉 |
 |------|------|
-| 기본 조회 | 최신 알림 배열을 반환한다. |
-| 알림 없음 | 빈 배열을 반환한다. |
-| 비정상 응답 | `ApiClientError` 로 변환된다. |
+| 湲곕낯 議고쉶 | 理쒖떊??諛곗뿴??諛섑솚?쒕떎. |
+| ?뚮┝ ?놁쓬 | 鍮?諛곗뿴??諛섑솚?쒕떎. |
+| ?쒖떆???쒓컙 臾몄옄??| ?쒕쾭??`createdAt` ????긽 ?대젮二쇨퀬 `timeLabel` ? ?좏깮?곸쑝濡쒕쭔 ?대젮以?? |
 
 ---
 
 ### Query Key / Adapter
 
 - React Query key: `['dashboard', 'notifications-get', mode]`
-- remote DTO 는 `data: NotificationItem[]` 구조를 사용하고 화면에서는 그대로 notification 모델로 사용한다.
+- remote DTO ??`data: NotificationItem[]` 援ъ“瑜??ъ슜?쒕떎.
+- ?대씪?댁뼵?몃뒗 `timeLabel` ???놁쑝硫?`createdAt` 湲곗??쇰줈 ?곷? ?쒓컙???뚮뜑留곹븷 ???덈떎.
 
 ---
 
-### 엣지 케이스
+### ?뚯뒪???쒕굹由ъ삤
 
-- [x] 알림이 0개면 빈 배열을 반환한다.
-- [ ] `timeLabel` 생성 주체는 서버 기준으로 최종 확정이 필요하다.
-- [x] 인증 없는 요청은 401 에러를 반환해야 한다.
-
----
-
-### 테스트 시나리오
-
-- [x] 최신 알림 목록을 반환한다.
-- [x] 알림이 없으면 빈 배열을 반환한다.
-- [ ] 인증 없는 요청은 `401 AUTH_REQUIRED` 를 반환한다.
-- [x] remote service 가 DTO wrapper 를 언랩한다.
+- [x] 理쒖떊 ?뚮┝ 紐⑸줉??諛섑솚?쒕떎.
+- [x] ?뚮┝???놁쑝硫?鍮?諛곗뿴??諛섑솚?쒕떎.
+- [ ] ?몄쬆 ?녿뒗 ?붿껌? `401 AUTH_REQUIRED` 瑜?諛섑솚?쒕떎.
+- [ ] `createdAt` ??湲곗??쇰줈 理쒖떊???뺣젹???좎??쒕떎.
 
 ---
 
-### 변경 이력
+### 蹂寃??대젰
 
-| 날짜 | 변경 내용 | 작성자 |
+| ?좎쭨 | 蹂寃??댁슜 | ?묒꽦??|
 |------|-----------|--------|
-| 2026-03-28 | 알림 조회 API spec 초안 작성 | Codex |
-| 2026-03-28 | React Query key 와 remote DTO 구조 기준 반영 | Codex |
-| 2026-03-28 | 서버 검증 규칙과 에러 코드 기준 추가 | Codex |
+| 2026-03-28 | ?뚮┝ 議고쉶 API spec Ready 濡??뺤젙 | Codex |

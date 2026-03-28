@@ -1,18 +1,24 @@
 ﻿# CommonSpecs
 
-이 폴더는 StudyPath 클라이언트와 서버가 함께 참조하는 공용 계약 문서를 보관합니다.
+???대뜑??StudyPath ?대씪?댁뼵?몄? ?쒕쾭媛 ?④퍡 李몄“?섎뒗 怨듭슜 怨꾩빟 臾몄꽌瑜?蹂닿??⑸땲??
 
-## 범위
+## 踰붿쐞
 - API endpoint contract
 - request/response schema
 - status code and validation rule
 - auth and error payload rule
 
-## 구조
-- `api/`: 공용 REST API 계약 문서
+## 援ъ“
+- `api/`: 怨듭슜 REST API 怨꾩빟 臾몄꽌
 
 ## source of truth
-- 프론트와 서버는 API 계약을 여기서 먼저 합의합니다.
-- 클라이언트 UI 문서는 `C:\Users\jgook\repo\TheStudyLab\docs\specs`에 둡니다.
-- 서버 구현 문서는 `C:\Users\jgook\repo\TheStudyLabServer\docs\specs`에 둡니다.
-"# TheStudyLabCommonSpecs" 
+- ?꾨줎?몄? ?쒕쾭??API 怨꾩빟???ш린??癒쇱? ?⑹쓽?⑸땲??
+- ?대씪?댁뼵??UI 臾몄꽌??`C:\Users\jgook\repo\TheStudyLab\docs\specs`???〓땲??
+- ?쒕쾭 援ы쁽 臾몄꽌??`C:\Users\jgook\repo\TheStudyLabServer\docs\specs`???〓땲??
+
+## auth transport policy
+- 怨듯넻 ?몄쬆 肄붿뼱???섎굹濡??좎??⑸땲??
+- ?뱀? `auth-web-*` 臾몄꽌? `/api/v1/auth/web/*` endpoint瑜??ъ슜?⑸땲??
+- 紐⑤컮?쇱? `auth-mobile-*` 臾몄꽌? `/api/v1/auth/mobile/*` endpoint瑜??ъ슜?⑸땲??
+- ??湲곕낯媛믪? same-site 諛고룷 + HttpOnly refresh cookie + refresh ?ㅽ뙣 ????긽 `401` ?낅땲??
+- 紐⑤컮??湲곕낯媛믪? secure storage refresh token rotation ?낅땲??

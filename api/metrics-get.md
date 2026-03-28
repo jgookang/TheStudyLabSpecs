@@ -1,29 +1,29 @@
-## Spec: metrics-get
+﻿## Spec: GET /api/v1/dashboard/metrics
 
-**유형**: `API Endpoint`  
-**위치**: `docs/specs/api/metrics-get.md`  
-**작성일**: 2026-03-28  
-**상태**: `Draft`
-
----
-
-### 목적
-
-> 대시보드 상단 지표 카드에 필요한 요약 수치를 조회한다.  
-> 기간(`daily`, `weekly`, `monthly`)에 따라 학습 시간, 목표 달성률, 습관 점수, 연속 학습일을 반환한다.
+**?좏삎**: `API Endpoint`  
+**?꾩튂**: `docs/specs/api/metrics-get.md`  
+**?묒꽦??*: 2026-03-28  
+**?곹깭**: `Ready`
 
 ---
 
-### 요구사항
+### 紐⑹쟻
 
-- [x] `period` query parameter 를 지원한다.
-- [x] 4개의 핵심 지표를 반환한다.
-- [x] 각 지표는 value, unit, trend 정보를 포함한다.
-- [x] 인증이 필요하다.
+> ??쒕낫???곷떒 吏??移대뱶???꾩슂???붿빟 ?섏튂瑜?議고쉶?쒕떎.  
+> 湲곌컙(`daily`, `weekly`, `monthly`)???곕씪 ?숈뒿 ?쒓컙, 紐⑺몴 ?ъ꽦瑜? ?듦? ?먯닔, ?곗냽 ?숈뒿?쇱쓣 諛섑솚?쒕떎.
 
 ---
 
-### 인터페이스 정의
+### ?붽뎄?ы빆
+
+- [x] `period` query parameter 瑜?吏?먰븳??
+- [x] ?뺥솗??4媛쒖쓽 ?듭떖 吏?쒕? 諛섑솚?쒕떎.
+- [x] 媛?吏?쒕뒗 value, unit, trend ?뺣낫瑜??ы븿?쒕떎.
+- [x] ?몄쬆???꾩슂?섎떎.
+
+---
+
+### ?명꽣?섏씠???뺤쓽
 
 ```typescript
 type DashboardPeriod = 'daily' | 'weekly' | 'monthly'
@@ -56,57 +56,61 @@ interface ApiErrorResponse {
 
 ---
 
-### 서버 검증 규칙
+### ?쒕쾭 寃利?洹쒖튃
 
-| 필드 | 규칙 |
+| ?꾨뱶 | 洹쒖튃 |
 |------|------|
-| `period` | 필수. `daily`, `weekly`, `monthly` 중 하나여야 한다. |
-| Authorization | 필수. 유효한 access token 또는 서버 인증 컨텍스트가 있어야 한다. |
+| `period` | ?꾩닔. `daily`, `weekly`, `monthly` 以??섎굹?ъ빞 ?쒕떎. |
+| Authorization | ?꾩닔. ?좏슚??access token ?먮뒗 ?쒕쾭 ?몄쬆 而⑦뀓?ㅽ듃媛 ?덉뼱???쒕떎. |
 
-검증 실패 시 권장 에러:
-- 잘못된 `period`: `400 INVALID_PERIOD`
-- 인증 없음: `401 AUTH_REQUIRED`
+寃利??ㅽ뙣 ??沅뚯옣 ?먮윭:
+- ?섎せ??`period`: `400 INVALID_PERIOD`
+- ?몄쬆 ?놁쓬: `401 AUTH_REQUIRED`
 
 ---
 
-### 동작 정의
+### ?숈옉 ?뺤쓽
 
-| 조건 | 동작 |
+| 議곌굔 | ?숈옉 |
 |------|------|
-| `period=daily` | 오늘 기준 지표를 반환한다. |
-| `period=weekly` | 이번 주 기준 누적/비교 지표를 반환한다. |
-| `period=monthly` | 이번 달 기준 지표를 반환한다. |
+| `period=daily` | ?ㅻ뒛 湲곗? 吏?쒕? 諛섑솚?쒕떎. |
+| `period=weekly` | ?대쾲 二?湲곗? ?꾩쟻/鍮꾧탳 吏?쒕? 諛섑솚?쒕떎. |
+| `period=monthly` | ?대쾲 ??湲곗? 吏?쒕? 諛섑솚?쒕떎. |
+| ?곗씠???쇰? ?꾨씫 | ??ぉ???앸왂?섏? 留먭퀬 0 ?먮뒗 以묐┰ 媛믪쑝濡??뺢퇋?뷀븳?? |
+
+---
+
+### ?묐떟 洹쒖튃
+
+- ?묐떟? ??긽 ?꾨옒 ?쒖꽌??4媛?metric ??諛섑솚?쒕떎.
+  1. `study-time`
+  2. `goal-rate`
+  3. `habit-score`
+  4. `streak-days`
+- 鍮?諛곗뿴 ???zero-filled metric 諛곗뿴??諛섑솚?쒕떎.
 
 ---
 
 ### Query Key / Adapter
 
 - React Query key: `['dashboard', 'metrics-get', period, mode]`
-- remote DTO 는 `data: MetricItem[]` 구조를 사용하고 화면에서는 그대로 metric 모델로 사용한다.
+- remote DTO ??`data: MetricItem[]` 援ъ“瑜??ъ슜?섍퀬 ?붾㈃?먯꽌??洹몃?濡?metric 紐⑤뜽濡??ъ슜?쒕떎.
 
 ---
 
-### 엣지 케이스
+### ?뚯뒪???쒕굹由ъ삤
 
-- [x] 지표 데이터가 비어 있으면 빈 배열을 반환할 수 있다.
-- [x] 지원하지 않는 `period` 값은 validation error 를 반환해야 한다.
-- [x] 인증이 없으면 401 계열 에러를 반환한다.
-
----
-
-### 테스트 시나리오
-
-- [x] daily 요청은 정상 응답한다.
-- [x] weekly 요청은 정상 응답한다.
-- [ ] 잘못된 `period` 요청은 `400 INVALID_PERIOD` 를 반환한다.
-- [ ] 인증 없는 요청은 `401 AUTH_REQUIRED` 를 반환한다.
+- [x] daily ?붿껌? ?뺤긽 ?묐떟?쒕떎.
+- [x] weekly ?붿껌? ?뺤긽 ?묐떟?쒕떎.
+- [x] monthly ?붿껌? ?뺤긽 ?묐떟?쒕떎.
+- [ ] ?섎せ??`period` ?붿껌? `400 INVALID_PERIOD` 瑜?諛섑솚?쒕떎.
+- [ ] ?몄쬆 ?녿뒗 ?붿껌? `401 AUTH_REQUIRED` 瑜?諛섑솚?쒕떎.
+- [ ] ?곗씠?곌? 鍮꾩뼱??4媛?metric ??zero-filled ?뺥깭濡?諛섑솚?쒕떎.
 
 ---
 
-### 변경 이력
+### 蹂寃??대젰
 
-| 날짜 | 변경 내용 | 작성자 |
+| ?좎쭨 | 蹂寃??댁슜 | ?묒꽦??|
 |------|-----------|--------|
-| 2026-03-28 | metrics 조회 API spec 초안 작성 | Codex |
-| 2026-03-28 | React Query key 와 remote DTO 구조 기준 반영 | Codex |
-| 2026-03-28 | 서버 검증 규칙과 에러 코드 기준 추가 | Codex |
+| 2026-03-28 | metrics 議고쉶 API spec Ready 濡??뺤젙 | Codex |

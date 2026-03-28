@@ -1,28 +1,35 @@
-## Spec: Endpoint Priority
+﻿## Spec: Endpoint Priority
 
-**유형**: `API`  
-**위치**: `docs/specs/api/endpoint-priority.md`  
-**작성일**: 2026-03-28  
-**상태**: `In Progress`
-
----
-
-### 목적
-
-> 실제 `/api/v1` 전환 전에 어떤 endpoint를 먼저 검증해야 하는지 우선순위를 정리한다.
+**?좏삎**: `API`  
+**?꾩튂**: `docs/specs/api/endpoint-priority.md`  
+**?묒꽦??*: 2026-03-28  
+**?곹깭**: `Ready`
 
 ---
 
-### P0. 즉시 검증 필요
+### 紐⑹쟻
 
-- [x] `POST /api/v1/auth/login`
-- [x] `POST /api/v1/auth/refresh`
-- [x] `POST /api/v1/auth/logout`
+> ?섎굹??諛깆뿏?쒓? ???꾨줎?몄? 紐⑤컮???깆쓣 紐⑤몢 吏?먰븷 ???덈룄濡? 
+> ?대뼡 endpoint瑜??대뼡 ?쒖꽌濡?怨좎젙?좎? ?곗꽑?쒖쐞瑜??뺣━?쒕떎.
+
+---
+
+### P0. Web Launch Foundation
+
+- [x] `POST /api/v1/auth/web/login`
+- [x] `POST /api/v1/auth/web/refresh`
+- [x] `POST /api/v1/auth/web/logout`
 - [x] `GET /api/v1/dashboard/metrics`
 - [x] `GET /api/v1/dashboard/plans/today`
 - [x] `GET /api/v1/dashboard/notifications`
 
-### P1. 현재 화면 연결 완료
+### P1. Shared Mobile Auth Foundation
+
+- [x] `POST /api/v1/auth/mobile/login`
+- [x] `POST /api/v1/auth/mobile/refresh`
+- [x] `POST /api/v1/auth/mobile/logout`
+
+### P2. Current Screen Endpoints
 
 - [x] `GET /api/v1/dashboard/habits`
 - [x] `GET /api/v1/curriculum/roadmaps`
@@ -41,14 +48,16 @@
 - [x] `POST /api/v1/community/posts/:postId/like`
 - [x] `POST /api/v1/community/posts/:postId/report`
 
-### P2. 다음 기능 확장
+### P3. Next Expansion
 
-- [ ] premium / billing 관련 endpoint
+- [ ] premium / billing 愿??endpoint
 
 ---
 
-### 메모
+### 硫붾え
 
-- query key는 endpoint spec 이름과 같은 축으로 맞춘다.
-- remote service는 실제 endpoint 호출 계약을 테스트로 고정한다.
-- 실제 백엔드 payload를 받으면 fixture와 spec을 바로 갱신한다.
+- ??auth ??same-site + refresh always `401` 湲곗??쇰줈 怨좎젙?쒕떎.
+- 紐⑤컮??auth ??媛숈? ?몄쬆 肄붿뼱瑜??곕릺 transport 留?遺꾨━?쒕떎.
+- dashboard P0 spec ? 援ы쁽 ?꾩뿉 `Ready` ?곹깭濡?癒쇱? ?ル뒗??
+- query key??endpoint spec ?대쫫怨?媛숈? 異뺤쑝濡?留욎텣??
+- ?ㅼ젣 諛깆뿏??payload瑜?諛쏆쑝硫?fixture? spec??諛붾줈 媛깆떊?쒕떎.
