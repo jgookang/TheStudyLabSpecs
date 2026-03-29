@@ -35,19 +35,23 @@
 - Server test suite (`node --test`) passes.
 - Remote smoke path passed after auth path migration to `/api/v1/auth/web/*`.
 - Fixture captures were updated on the frontend repo from real backend responses.
+- Step 9 client finalization completed in `TheStudyLab`:
+- `bc99fdf chore(smoke): sync web auth paths and refreshed remote fixtures`
+- Post-commit smoke regression check passed against `http://127.0.0.1:8080`.
 
 ---
 
 ### Current Open Item
 
-- Step 9 finalization across repos:
-- Keep `CommonSpecs` smoke/runbook docs synced.
-- Finalize `TheStudyLab` commit for smoke script and fixture updates.
+- Phase 2 design kickoff:
+- persistent data/session storage strategy
+- session lifecycle hardening beyond in-memory runtime
+- auth security hardening (rate limits, audit log, revocation tooling)
 
 ---
 
 ### First Tasks for Next Session
 
-1. Confirm clean git status in `TheStudyLabServer`, `CommonSpecs`, and `TheStudyLab`.
-2. Re-run smoke after client commit merge.
-3. Start Phase 2 design for persistent data/session storage and auth hardening.
+1. Draft implementation-ready Phase 2 architecture (`Server/features/backend-phase-2-plan.md`).
+2. Define session expiry/revocation behavior and contract-test expansion scope.
+3. Prepare rate-limit/audit-log rollout slices for auth endpoints.

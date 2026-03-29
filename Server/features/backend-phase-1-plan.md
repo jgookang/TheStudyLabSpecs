@@ -3,7 +3,7 @@
 **Type**: `Feature`  
 **Location**: `Server/features/backend-phase-1-plan.md`  
 **Updated**: 2026-03-29  
-**Status**: `Ready`
+**Status**: `Done`
 
 ---
 
@@ -17,6 +17,7 @@
 
 - [session-handoff.md](/C:/Users/jgook/repo/CommonSpecs/Server/features/session-handoff.md)
 - [phase-1-next-steps.md](/C:/Users/jgook/repo/CommonSpecs/Server/features/phase-1-next-steps.md)
+- [backend-phase-2-plan.md](/C:/Users/jgook/repo/CommonSpecs/Server/features/backend-phase-2-plan.md)
 - [auth-session-lifecycle.md](/C:/Users/jgook/repo/CommonSpecs/Server/backend/auth-session-lifecycle.md)
 - `C:\Users\jgook\repo\CommonSpecs\Common\api\auth-web-login-post.md`
 - `C:\Users\jgook\repo\CommonSpecs\Common\api\auth-web-refresh-post.md`
@@ -46,7 +47,7 @@
 6. Step 6: Curriculum/Schedule/Habit/Analytics/Community read endpoints - `Done`
 7. Step 7: Schedule/Habit/Community/Dashboard mutations - `Done`
 8. Step 8: Mobile auth endpoints (`/auth/mobile/*`) - `Done`
-9. Step 9: Cross-repo smoke/spec sync - `In Progress`
+9. Step 9: Cross-repo smoke/spec sync - `Done`
 
 ---
 
@@ -59,8 +60,16 @@
 
 ---
 
-### Remaining Work to Close Phase 1
+### Phase 1 Closure Notes
 
-- Finalize Step 9 client-side commit in `TheStudyLab` (smoke script + fixture updates).
-- Keep `CommonSpecs` runbook/results synced with the latest smoke output.
-- Open Phase 2 scope for persistence, session expiry, and security hardening.
+- `TheStudyLab` Step 9 commit finalized:
+- `bc99fdf chore(smoke): sync web auth paths and refreshed remote fixtures`
+- Post-commit smoke re-run passed on `http://127.0.0.1:8080`.
+- `CommonSpecs` smoke runbook/results were synced with the latest execution history.
+
+---
+
+### Next Stage
+
+- Start Phase 2 scope for persistence, session expiry, and security hardening.
+- Working draft: `Server/features/backend-phase-2-plan.md`

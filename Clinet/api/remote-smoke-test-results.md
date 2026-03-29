@@ -37,6 +37,33 @@ npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080 --capture-fixtures
 - `/api/v1/auth/web/logout`
 - Metrics query updated to `period=weekly`.
 
+#### 2026-03-29 09:58 KST (Passed, Fixture Capture Refresh)
+
+- Command:
+
+```powershell
+npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080 --capture-fixtures
+```
+
+- Result: passed.
+- Notes:
+- Re-captured fixture payloads from current backend runtime.
+- Confirmed web auth transport path (`/api/v1/auth/web/*`) and weekly metrics query.
+
+#### 2026-03-29 10:00 KST (Passed, Post-Commit Regression Check)
+
+- Command:
+
+```powershell
+npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080
+```
+
+- Result: passed.
+- Related client commit in `TheStudyLab`:
+- `bc99fdf chore(smoke): sync web auth paths and refreshed remote fixtures`
+- Verification:
+- Same end-to-end path passed after commit with no additional fixture capture.
+
 ---
 
 ### Fixture Capture Applied
@@ -66,4 +93,5 @@ npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080 --capture-fixtures
 
 ### Next Check
 
-- Re-run full smoke after Step 9 client commits are finalized in `TheStudyLab`.
+- Continue periodic smoke runs after backend auth/session changes.
+- Track backend Phase 2 kickoff in `Server/features/backend-phase-2-plan.md`.

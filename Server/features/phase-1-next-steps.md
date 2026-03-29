@@ -3,7 +3,7 @@
 **Type**: `Feature`  
 **Location**: `Server/features/phase-1-next-steps.md`  
 **Updated**: 2026-03-29  
-**Status**: `In Progress`
+**Status**: `Done`
 
 ---
 
@@ -19,24 +19,23 @@
 - Web/mobile split auth endpoints are implemented and tested.
 - Dashboard/read and core mutation endpoints are implemented and tested.
 - Remote smoke path has passed with `/api/v1/auth/web/*` endpoints.
+- Step 9 cross-repo finalization is complete:
+- `TheStudyLab` commit `bc99fdf` finalized smoke script and fixture refresh.
+- Post-commit smoke re-run passed on `http://127.0.0.1:8080`.
 
 ---
 
-### Immediate Next Steps
+### Phase 1 Closure Checklist (Completed)
 
-1. Finalize Step 9 client repo commit:
-- `TheStudyLab/scripts/remoteSmokeTest.mjs`
-- refreshed fixture payload files captured from backend
-2. Keep `CommonSpecs` runbook and result docs up to date with latest smoke run.
-3. Re-run smoke after final client commit to confirm no regression.
-4. Move to Phase 2 planning:
-- durable storage for sessions/domain data
-- session expiry enforcement beyond in-memory runtime
-- auth hardening (rate limits, audit logs, revocation tooling)
+1. Finalized Step 9 client repo commit in `TheStudyLab`.
+2. Synced `CommonSpecs` smoke runbook/results with latest execution history.
+3. Re-ran smoke after final client commit and confirmed no regression.
 
 ---
 
-### Parallel Work Items
+### Next Stage (Phase 2 Kickoff)
 
-- Backend Phase 2 design can start in parallel with frontend fixture finalization.
-- Contract-test strengthening for shared DTO validation can run in parallel with persistence design.
+1. Define durable persistence strategy for auth/session/domain data.
+2. Enforce session lifecycle beyond in-memory runtime (expiry, revocation, recovery).
+3. Add auth hardening baseline (rate limits, audit log events, revocation tooling).
+4. Expand integration/contract tests for persistence-backed auth flows.
