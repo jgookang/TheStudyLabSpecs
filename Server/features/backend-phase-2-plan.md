@@ -206,11 +206,16 @@
 - Captured dry-run + execute sample and audit trail summary:
 - `Server/backend/operator-security-evidence.md`
 
+7. PostgreSQL migration start
+- Added persistence driver mode split: `memory | file | postgres`.
+- Added PostgreSQL bootstrap contract for JSONB snapshot table (`studylab_state_snapshots`).
+- Added configuration/env contract for PostgreSQL selection and table/schema overrides.
+
 #### Next Slice
 
 1. Re-run remote smoke outside sandbox restrictions and record fresh timestamp.
 2. Apply template defaults to deployment environment variables and secret manager values.
-3. Validate retention and export behavior in staging/production after env rollout.
+3. Run staging PostgreSQL connection + smoke verification with `PERSISTENCE_DRIVER=postgres`.
 
 ---
 

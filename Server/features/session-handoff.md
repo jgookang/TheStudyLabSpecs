@@ -57,6 +57,7 @@
 - `TheStudyLabServer/.env.production.example`
 - Captured operator dry-run + execute evidence sample:
 - `Server/backend/operator-security-evidence.md` (`2026-03-29 14:36 KST`)
+- Started PostgreSQL persistence migration with driver mode split and env contracts.
 
 ---
 
@@ -64,7 +65,7 @@
 
 - Remote smoke re-run outside sandbox-restricted shell and result capture.
 - Apply staging/production template defaults to deployment env vars/secrets.
-- Validate retention and export behavior in staging/production after env rollout.
+- Run staging PostgreSQL connection + smoke verification with `PERSISTENCE_DRIVER=postgres`.
 
 ---
 
@@ -72,4 +73,4 @@
 
 1. Re-run remote smoke and sync latest timestamp in `Clinet/api/remote-smoke-test-results.md`.
 2. Apply staging/production env var defaults from `Server/backend/operator-security-runbook.md` and server templates.
-3. Validate staging/production retention and export behavior against runbook defaults.
+3. Run staging PostgreSQL connection + smoke verification and capture result.
