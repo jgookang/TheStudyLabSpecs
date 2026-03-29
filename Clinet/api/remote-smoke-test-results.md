@@ -64,6 +64,22 @@ npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080
 - Verification:
 - Same end-to-end path passed after commit with no additional fixture capture.
 
+#### 2026-03-29 10:23 KST (Passed, Phase 2 Slice-1 Regression Check)
+
+- Command:
+
+```powershell
+npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080
+```
+
+- Result: passed.
+- Notes:
+- Verified regression after Phase 2 slice-1 server changes:
+- persistence adapter + repository boundary introduction
+- session lifecycle hardening (idle/absolute expiry + revoke)
+- auth hardening baseline (rate-limit + audit event capture)
+- No contract break detected on existing smoke path.
+
 ---
 
 ### Fixture Capture Applied

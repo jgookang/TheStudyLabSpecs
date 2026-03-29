@@ -64,6 +64,35 @@
 
 ---
 
+### Implementation Progress (2026-03-29)
+
+#### Completed in Slice 1
+
+1. Persistence/Repository foundation
+- Added pluggable persistence adapter with in-memory fallback.
+- Added repository boundaries for auth/session and mutation-heavy features.
+
+2. Session lifecycle hardening
+- Added absolute + idle expiry checks.
+- Added expiry-triggered revocation path for stale sessions.
+
+3. Auth hardening baseline
+- Added login/refresh rate limit controls.
+- Added audit event capture for auth success/failure, rate-limit, and logout flows.
+
+4. Verification expansion
+- Added persistence-backed integration tests for web/mobile auth across restart.
+- Added contract tests for `REFRESH_SESSION_EXPIRED` and `AUTH_RATE_LIMITED`.
+- Re-ran remote smoke after implementation (`2026-03-29 10:23 KST`) and confirmed pass.
+
+#### Next Slice
+
+1. Define operator-facing revocation workflow (session revoke/revoke-all).
+2. Add audit event query/export path for operational debugging.
+3. Expand persistence-backed coverage for additional mutable feature domains.
+
+---
+
 ### Out of Scope for First Slice
 
 - Full analytics/event warehouse ingestion.

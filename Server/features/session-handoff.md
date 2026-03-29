@@ -38,20 +38,22 @@
 - Step 9 client finalization completed in `TheStudyLab`:
 - `bc99fdf chore(smoke): sync web auth paths and refreshed remote fixtures`
 - Post-commit smoke regression check passed against `http://127.0.0.1:8080`.
+- Phase 2 slice-1 regression check passed:
+- `npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080` (`2026-03-29 10:23 KST`)
 
 ---
 
 ### Current Open Item
 
-- Phase 2 design kickoff:
-- persistent data/session storage strategy
-- session lifecycle hardening beyond in-memory runtime
-- auth security hardening (rate limits, audit log, revocation tooling)
+- Phase 2 slice-2 execution:
+- operator-facing session revocation workflow
+- audit event query/export path
+- persistence-backed coverage expansion beyond auth core
 
 ---
 
 ### First Tasks for Next Session
 
-1. Draft implementation-ready Phase 2 architecture (`Server/features/backend-phase-2-plan.md`).
-2. Define session expiry/revocation behavior and contract-test expansion scope.
-3. Prepare rate-limit/audit-log rollout slices for auth endpoints.
+1. Implement revoke/revoke-all workflow design in auth operational path.
+2. Add audit event read model for troubleshooting and support use-cases.
+3. Expand persistence-backed test scope to additional mutation domains.
