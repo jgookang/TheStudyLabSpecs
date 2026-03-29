@@ -5,7 +5,9 @@ Backend design docs describe how the server should satisfy the shared contracts 
 - Session storage and rotation strategy
 - Middleware and authorization context
 - Operational guardrails for logging, rate limits, and revocation
+- Operator security runbook defaults and bulk-revoke execution policy
 ### How To Use This Folder
 - Review the shared endpoint contracts first.
 - Lock transport decisions here before implementation starts in the server repository.
 - Use these notes to drive smoke-test readiness and endpoint rollout order.
+- Keep `operator-security-runbook.md` aligned with real runtime defaults.

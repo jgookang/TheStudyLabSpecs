@@ -50,19 +50,21 @@
 - `node --test` (`38/38`)
 - Added audit retention policy controls and criteria revoke approval-token workflow.
 - Inline remote smoke sequence passed (`2026-03-29 13:47 KST`) on `http://127.0.0.1:8080`.
+- Published operator security runbook with environment defaults and approval failure handling:
+- `Server/backend/operator-security-runbook.md`
 
 ---
 
 ### Current Open Item
 
 - Remote smoke re-run outside sandbox-restricted shell and result capture.
-- Environment-specific audit retention default and runbook sync.
-- Operator approval usage runbook (preview/execute/expired/reused token handling).
+- Apply runbook defaults to deployment environment variables (staging/production).
+- Capture one operator dry-run + execute evidence sample in ops notes.
 
 ---
 
 ### First Tasks for Next Session
 
 1. Re-run remote smoke and sync latest timestamp in `Clinet/api/remote-smoke-test-results.md`.
-2. Publish audit retention defaults (local/staging/prod) in server runbook.
-3. Add operator approval usage guidance with failure-code troubleshooting.
+2. Apply staging/production env var defaults from `Server/backend/operator-security-runbook.md`.
+3. Capture operator criteria revoke execution evidence for incident runbook appendix.

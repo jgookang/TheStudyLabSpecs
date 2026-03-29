@@ -195,11 +195,15 @@
 - Inline remote smoke sequence passed (`2026-03-29 13:47 KST`) on `http://127.0.0.1:8080`.
 - Full `npm run smoke:remote` orchestration remained blocked in this sandbox session due process policy.
 
+5. Operational runbook sync
+- Published environment-tier defaults and operator approval handling guide:
+- `Server/backend/operator-security-runbook.md`
+
 #### Next Slice
 
 1. Re-run remote smoke outside sandbox restrictions and record fresh timestamp.
-2. Publish environment-specific retention defaults and operator runbook.
-3. Add operator approval usage runbook (preview/execute/expired/reused token handling).
+2. Apply runbook defaults to deployment environment variables (staging/production).
+3. Capture one operator dry-run + execute evidence sample in ops notes.
 
 ---
 
