@@ -60,6 +60,7 @@
 - Started PostgreSQL persistence migration with driver mode split and env contracts.
 - Added PostgreSQL restart verification script in server repo (`npm run smoke:postgres`).
 - Current sandbox run is blocked at dependency install (`pg`) due network/permission policy.
+- PostgreSQL blocked-run evidence captured: `Server/backend/postgres-smoke-evidence.md`.
 
 ---
 

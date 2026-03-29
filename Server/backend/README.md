@@ -7,9 +7,11 @@ Backend design docs describe how the server should satisfy the shared contracts 
 - Operational guardrails for logging, rate limits, and revocation
 - Operator security runbook defaults and bulk-revoke execution policy
 - Operator security evidence capture and incident appendix sample
+- PostgreSQL restart-smoke evidence and rollout readiness status
 ### How To Use This Folder
 - Review the shared endpoint contracts first.
 - Lock transport decisions here before implementation starts in the server repository.
 - Use these notes to drive smoke-test readiness and endpoint rollout order.
 - Keep `operator-security-runbook.md` aligned with real runtime defaults.
 - Keep `operator-security-evidence.md` refreshed with the latest validation sample.
+- Keep `postgres-smoke-evidence.md` updated after each staging retry.
