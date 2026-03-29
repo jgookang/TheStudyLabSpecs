@@ -72,3 +72,11 @@ Policy notes:
 - Prefer narrow criteria over broad windows.
 - Set `maxRevocations` for high-risk scopes.
 - Export and attach audit evidence after execution.
+
+---
+
+### Implementation Mapping
+
+- Server repo templates:
+- `TheStudyLabServer/.env.staging.example`
+- `TheStudyLabServer/.env.production.example`

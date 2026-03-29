@@ -52,13 +52,16 @@
 - Inline remote smoke sequence passed (`2026-03-29 13:47 KST`) on `http://127.0.0.1:8080`.
 - Published operator security runbook with environment defaults and approval failure handling:
 - `Server/backend/operator-security-runbook.md`
+- Published deploy-ready env templates in server repo:
+- `TheStudyLabServer/.env.staging.example`
+- `TheStudyLabServer/.env.production.example`
 
 ---
 
 ### Current Open Item
 
 - Remote smoke re-run outside sandbox-restricted shell and result capture.
-- Apply runbook defaults to deployment environment variables (staging/production).
+- Apply staging/production template defaults to deployment env vars/secrets.
 - Capture one operator dry-run + execute evidence sample in ops notes.
 
 ---
@@ -66,5 +69,5 @@
 ### First Tasks for Next Session
 
 1. Re-run remote smoke and sync latest timestamp in `Clinet/api/remote-smoke-test-results.md`.
-2. Apply staging/production env var defaults from `Server/backend/operator-security-runbook.md`.
+2. Apply staging/production env var defaults from `Server/backend/operator-security-runbook.md` and server templates.
 3. Capture operator criteria revoke execution evidence for incident runbook appendix.

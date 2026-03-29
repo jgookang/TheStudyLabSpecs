@@ -198,11 +198,14 @@
 5. Operational runbook sync
 - Published environment-tier defaults and operator approval handling guide:
 - `Server/backend/operator-security-runbook.md`
+- Published deploy-ready server templates in implementation repo:
+- `TheStudyLabServer/.env.staging.example`
+- `TheStudyLabServer/.env.production.example`
 
 #### Next Slice
 
 1. Re-run remote smoke outside sandbox restrictions and record fresh timestamp.
-2. Apply runbook defaults to deployment environment variables (staging/production).
+2. Apply template defaults to deployment environment variables and secret manager values.
 3. Capture one operator dry-run + execute evidence sample in ops notes.
 
 ---
