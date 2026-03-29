@@ -40,20 +40,22 @@
 - Post-commit smoke regression check passed against `http://127.0.0.1:8080`.
 - Phase 2 slice-1 regression check passed:
 - `npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080` (`2026-03-29 10:23 KST`)
+- Phase 2 slice-2 regression check passed:
+- `npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080` (`2026-03-29 12:14 KST`)
 
 ---
 
 ### Current Open Item
 
-- Phase 2 slice-2 execution:
-- operator-facing session revocation workflow
-- audit event query/export path
+- Phase 2 slice-3 execution:
+- operator tooling pagination/cursor and filter presets
+- revoke-all-by-criteria workflows
 - persistence-backed coverage expansion beyond auth core
 
 ---
 
 ### First Tasks for Next Session
 
-1. Implement revoke/revoke-all workflow design in auth operational path.
-2. Add audit event read model for troubleshooting and support use-cases.
+1. Add cursor/pagination support for operator audit query/export endpoints.
+2. Implement revoke-all criteria model (clientType + scope guards).
 3. Expand persistence-backed test scope to additional mutation domains.

@@ -80,6 +80,22 @@ npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080
 - auth hardening baseline (rate-limit + audit event capture)
 - No contract break detected on existing smoke path.
 
+#### 2026-03-29 12:14 KST (Passed, Phase 2 Slice-2 Regression Check)
+
+- Command:
+
+```powershell
+npm.cmd run smoke:remote -- --base-url http://127.0.0.1:8080
+```
+
+- Result: passed.
+- Notes:
+- Verified regression after Phase 2 slice-2 server changes:
+- operator session revoke/revoke-all workflow endpoints
+- operator audit query/export endpoints
+- operator auth guard + audit query validation paths
+- No contract break detected on existing smoke path.
+
 ---
 
 ### Fixture Capture Applied

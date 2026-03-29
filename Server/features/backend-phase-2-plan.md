@@ -87,9 +87,41 @@
 
 #### Next Slice
 
-1. Define operator-facing revocation workflow (session revoke/revoke-all).
-2. Add audit event query/export path for operational debugging.
+1. Expand operator tooling from single-user scope to bulk/criteria revoke workflows.
+2. Add pagination/cursor model and retention policy controls for audit export.
 3. Expand persistence-backed coverage for additional mutable feature domains.
+
+---
+
+### Slice 2 Progress (2026-03-29)
+
+#### Completed
+
+1. Operator revocation workflow
+- Added operator-protected revoke endpoint:
+- `POST /api/v1/auth/operator/sessions/revoke`
+- Added operator-protected revoke-all endpoint:
+- `POST /api/v1/auth/operator/sessions/revoke-all`
+- Added explicit not-found contract for unknown user in revoke-all path.
+
+2. Operator audit query/export
+- Added operator-protected audit query endpoint:
+- `GET /api/v1/operator/audit/events`
+- Added operator-protected audit export endpoint:
+- `GET /api/v1/operator/audit/events/export?format=jsonl`
+- Added query validation for limit/clientType/timestamp filters.
+
+3. Verification
+- Added operator auth + revoke/revoke-all HTTP tests.
+- Added operator audit query/export HTTP tests.
+- Full server test suite passed (`node --test`, 30 tests).
+- Remote smoke passed after slice-2 changes (`2026-03-29 12:14 KST`).
+
+#### Next Slice
+
+1. Add operator pagination/cursor and saved-filter support for audit tooling.
+2. Add revoke-all-by-criteria workflows (clientType + time window + active-only guards).
+3. Extend persistence-backed coverage to non-auth mutation domains.
 
 ---
 
